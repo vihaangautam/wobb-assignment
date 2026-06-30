@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import type { Platform, UserProfileSummary } from "@/types";
 import { VerifiedBadge } from "./VerifiedBadge";
 import { formatFollowers } from "@/utils/formatters";
+import { AddToListButton } from "@/features/shortlist/components/AddToListButton";
 
 interface ProfileCardProps {
   profile: UserProfileSummary;
@@ -31,14 +32,16 @@ export function ProfileCard({
         <div className="text-sm text-gray-600">{profile.fullname}</div>
         <div className="text-sm">{formatFollowers(profile.followers)} followers</div>
       </div>
-      {/* TODO: Add to List button will be implemented in Part 2 */}
-      <button
-        disabled
-        className="px-3 py-1 bg-gray-300 text-gray-500 text-sm rounded cursor-not-allowed"
-        onClick={(e) => e.stopPropagation()}
-      >
-        Add to List
-      </button>
+      <AddToListButton
+        profile={{
+          username: profile.username,
+          fullName: profile.fullname,
+          platform,
+          avatarUrl: profile.picture,
+          followers: profile.followers,
+          isVerified: profile.is_verified,
+        }}
+      />
     </Link>
   );
 }

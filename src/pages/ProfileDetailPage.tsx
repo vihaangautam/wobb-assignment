@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { VerifiedBadge } from "@/components/VerifiedBadge";
-import type { FullUserProfile, ProfileDetailResponse } from "@/types";
+import type { FullUserProfile, Platform, ProfileDetailResponse } from "@/types";
 import { formatFollowers, formatEngagementRate } from "@/utils/formatters";
 import { loadProfileByUsername } from "@/utils/profileLoader";
+import { AddToListButton } from "@/features/shortlist/components/AddToListButton";
 
 export function ProfileDetailPage() {
   const { username } = useParams<{ username: string }>();
   const [searchParams] = useSearchParams();
-  const platform = searchParams.get("platform") || "unknown";
+  const platform = (searchParams.get("platform") || "instagram") as Platform;
   const [profileData, setProfileData] = useState<ProfileDetailResponse | null>(
     null
   );
@@ -141,14 +142,17 @@ export function ProfileDetailPage() {
             </a>
           )}
 
-          {/* TODO: candidates must implement Add to List feature */}
-          {/* TODO: candidates must implement Add to List feature */}
-          <button
-            disabled
-            className="block mt-4 px-4 py-2 bg-gray-300 text-gray-500 rounded cursor-not-allowed"
-          >
-            Add to List
-          </button>
+          <AddToListButton
+            profile={{
+              username: user.username,
+              fullName: user.fullname,
+              platform,
+              avatarUrl: user.picture,
+              followers: user.followers,
+              isVerified: user.is_verified,
+            }}
+            size="md"
+          />
         </div>
       </div>
     </Layout>
