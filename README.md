@@ -1,80 +1,117 @@
-# Wobb Frontend Assignment
+# WobbVibe — Influencer Discovery & Shortlisting Experience
 
-A starter influencer search application built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**. This project is intentionally left in a rough-but-working state for candidates to improve.
+A premium, fully responsive, and highly optimized influencer discovery platform designed for brand managers. Built with **React 19**, **TypeScript**, **Vite**, **Tailwind CSS v4**, and **Zustand**.
+
+---
 
 ## Getting Started
 
+Follow these steps to run the project locally:
+
 ```bash
-npm install
+# Install dependencies (respects Tailwind v4 and React 19 settings)
+npm install --legacy-peer-deps
+
+# Run the development server
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) to view the app.
-
-## What's Included
-
-- **Search / Dashboard** — filter influencers by platform (Instagram, YouTube, TikTok) and search by username or full name
-- **Profile Details** — click a profile to view extended data loaded from individual JSON files
-- **Routing** — `react-router-dom` with `/` (search) and `/profile/:username` (details)
-
-Sample data lives in:
-
-- `src/assets/data/search/` — platform search results (10 profiles each)
-- `src/assets/data/profiles/` — detailed profile JSON per username
-
-## How to Submit
-
-1. **Download or clone** this starter project to your machine.
-2. **Create a new repository** on your own GitHub account. Do not fork the original assignment repo — push your work to a repo you own.
-3. Complete the tasks below and push your changes to that repository.
-4. **Share the public GitHub repository URL** with us as your submission.
-
-### Deadline (strict)
-
-- **Due:** **2 July 2026, 2:00 PM IST** (Indian Standard Time, UTC+5:30)
-- **Any git commits made after this deadline will disqualify your submission.** We will only consider the repository state as of the deadline; late commits will not be reviewed.
-- Make sure your final work is pushed **before** the cutoff.
-
-## AI Usage
-
-You may use any AI tools (Cursor, ChatGPT, Claude, GitHub Copilot, etc.). We are evaluating your final solution and engineering decisions.
-
-## Your Tasks
-
-Complete the following as part of your submission:
-
-1. **Find and fix all bugs and quality issues** — the codebase contains intentional bugs and quality issues. Identify and resolve them.
-
-2. **Completely redesign the UI/UX** — replace the basic layout with a polished, modern interface. Focus on usability, visual hierarchy, and delight.
-
-3. **Replace React Context with Zustand** — when you implement state management for the selected list, use [Zustand](https://github.com/pmndrs/zustand) instead of React Context.
-
-4. **Implement "Select profile & Add to List"** — the disabled "Add to List" button is a stub. Build the full feature:
-   - Select / add profiles to a persistent list
-   - View and manage the selected list
-   - Handle duplicates appropriately
-
-5. **Improve code quality and project structure** — refactor as needed, add proper types, and follow React best practices.
-
-6. **Optimize performance** — apply sensible optimizations where appropriate.
-
-7. **Use any libraries you need** — you are not limited to the current stack. Choose tools that help you deliver a great result (UI kits, state managers, testing libraries, etc.).
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## Scripts
 
-| Command        | Description              |
-| -------------- | ------------------------ |
-| `npm run dev`  | Start development server |
-| `npm run build`| Production build         |
-| `npm run lint` | Run ESLint               |
+| Command | Description |
+|---|---|
+| `npm run dev` | Starts the development server |
+| `npm run build` | Builds the production bundle (TypeScript compiler + Vite build) |
+| `npm run lint` | Lints the codebase using ESLint |
 
-## Submission Notes
+## Tech Stack
 
-- Document any assumptions or trade-offs in your README
-- Ensure `npm run build` passes before submitting
-- Focus on demonstrating your judgment — not every possible feature needs to be built, but the core assignment items should be addressed thoughtfully
-- Double-check that your repo is public (or that we have access) and that the link is included in your submission
-- Please make meaningful commits throughout your work. We may review your commit history.
-- **Bonus:** Deploying the app (e.g. Vercel, Netlify, GitHub Pages) is optional but will be considered a plus — include the live URL in your submission if you do
+- **Framework:** React 19 (Strict Mode enabled)
+- **Styling:** Tailwind CSS v4 (using CSS-first `@theme` configuration)
+- **State Management:** Zustand v5 (with local storage persistence)
+- **Bundler:** Vite v8
+- **Icons:** Lucide React v0.468
+- **Utilities:** clsx (conditional class merging)
 
-Good luck!
+---
+
+## What I Changed
+
+To elevate this project from a prototype to a production-grade application, I completed the following tasks:
+
+### 1. Found & Fixed Issues
+- **Case-Sensitive Search Bug:** Lowercased both the username query and search query in `dataHelpers.ts` to allow case-insensitive matches (e.g. searching "cristiano" now correctly finds `@cristiano`).
+- **Engagement Rate Calculation Bug:** Corrected the formula in `ProfileDetailPage.tsx` which multiplied by `10000` instead of `100` (e.g., rate of `0.012` now renders as `1.20%` instead of `120.00%`). Consolidated it with the shared `formatEngagementRate` helper.
+- **Engagements Metric Bug:** Corrected the detail page's "Engagements" statistic to show the actual engagement count instead of repeating the engagement rate.
+- **Inaccessible Card Layout:** Replaced the semantic-lacking `div onClick` in `ProfileCard.tsx` with a proper, focusable `<Link>` component to enable native keyboard navigation and proper screen reader behavior.
+- **Missing Alt Tags:** Added descriptive `alt` tags to all profile image elements (e.g. `"${fullname}'s profile photo"`) for accessibility.
+- **Layout Overflow:** Fixed the `#root` container having a fixed `width: 1126px`, which caused a horizontal scrollbar on mobile/tablets. Changed to `max-width: 1200px` with fluid responsive padding.
+- **Dead Code Cleanup:** Removed the unused `SearchBar.tsx` file, dead `clickCount` state variables, and `console.log` statements.
+
+### 2. UI/UX Redesign
+- **Premium Aesthetics:** Implemented a modern dark-mode-first glassmorphism theme, featuring custom deep dark card colors, subtle border glows, and purple-indigo brand gradients.
+- **Sticky Navbar:** Crafted a blur-backdrop navigation header containing the WobbVibe brand mark and a floating heart shortlist counter button.
+- **Pill Filter Controls:** Replaced the generic platform selection buttons with pill tabs featuring platform-specific hover scales, active gradients, and platform brand icons.
+- **Slide-over Shortlist Panel:** Designed an elegant slide-over drawer that pulls out from the right to manage selected creators in real time without taking the user away from their discovery flow.
+- **Performance-first Empty States:** Created friendly, illustrated empty states for search queries and shortlists that return no results.
+
+### 3. Context → Zustand
+- **Global Shortlist Store:** Swapped the context stub with a Zustand store inside `src/features/shortlist/store/useShortlistStore.ts`.
+- **Durable Persistence:** Integrated Zustand's `persist` middleware to save shortlisted profiles in `localStorage`, making the shortlist durable across full page reloads and tab closures.
+- **Narrow Selectors:** Designed components to subscribe only to specific slices of store state (e.g. `useShortlistStore(s => s.profiles.length)`), preventing unnecessary re-renders when unrelated store fields change.
+
+### 4. "Select Profile & Add to List"
+- **Shared Toggle Button:** Built a reusable `AddToListButton.tsx` component used uniformly in search results and the detailed view, keeping styling and event handling DRY.
+- **Heart Toggle Animation:** Wireframe features a toggleable heart icon that turns into a filled red/purple heart when shortlisted.
+- **Duplicate Prevention:** Leveraged the `username` as a unique key in the store to guarantee a profile cannot be added twice.
+- **Instant Deselection:** Reverting shortlist status is synchronised in real time across the detail page, search results card, and shortlist slide-over panel.
+
+### 5. Code Quality & Folder Structure
+- Organized loose files into feature-focused subfolders:
+  - `src/features/shortlist/` houses store logic and shortlist-specific components.
+  - `src/hooks/` contains reusable custom hooks like `useDebounce.ts`.
+  - `src/components/` holds global UI components.
+  - `src/pages/` separates page layouts.
+- Replaced duplicate helper functions with imports from a single source of truth in `utils/formatters.ts`.
+- Fully typed all component props and removed legacy default typings to ensure a clean TypeScript build.
+
+### 6. Performance
+- **Debounced Search Input:** Implemented a custom `useDebounce` hook to delay search filtering by 250ms, eliminating lag while typing.
+- **React.memo Optimization:** Memoized `ProfileCard` components using `React.memo` to prevent re-rendering the entire creator grid when a single shortlist button is clicked.
+- **useMemo Hooks:** Wrapped expensive array filters and map executions in `useMemo` hooks, invalidating calculations only when search queries or platforms change.
+- **Route-based Code Splitting:** Lazy-loaded `ProfileDetailPage` using `React.lazy` and `Suspense`, trimming down the initial load bundle size.
+
+---
+
+## Libraries I Added
+
+| Library | Purpose | Why this one |
+|---|---|---|
+| `zustand` | Global shortlist state management | Required by the brief; lightweight, fast, and easy to persist to local storage |
+| `lucide-react` | Modern, uniform UI iconography | Provides a clean, modern, and tree-shakeable icon set |
+| `clsx` | Conditional CSS class joining | Clean utility for toggling Tailwind classes dynamically |
+
+---
+
+## Assumptions Made
+
+- **Username Uniqueness:** Assumed that creator usernames are globally unique across the platform based on the route pattern (`/profile/:username`), using the username alone as the deduplication key.
+- **Single Shortlist:** Assumed brand managers work with one primary active shortlist campaign at a time, making a single persisted array in local storage appropriate.
+
+---
+
+## Trade-offs
+
+- **Drawer vs. Separate Page:** Chose to implement the shortlist view as a slide-over drawer panel instead of a dedicated route (`/shortlist`). This trade-off keeps the brand manager in context, allowing them to browse creators and toggle shortlists without frustrating back-and-forth page navigation.
+- **No Virtualization:** Chose to skip list virtualization (`react-window`/`react-virtualized`) for the creator grids. Since search results are capped at 10 items per platform in the static dataset, the overhead of virtualization libraries would slow down load times without yielding any performance benefits.
+
+---
+
+## Remaining Improvements
+
+If given more time, I would:
+1. **Multi-List Campaigns:** Allow users to create and manage multiple shortlists (e.g. "Summer Campaign", "Tech Launch") instead of a single global list.
+2. **Export to CSV/PDF:** Provide an export button on the shortlist panel to download the selected creator profiles as a spreadsheet or pitch deck.
+3. **Outreach Workflow:** Build a mock email/outreach sequence modal so brand managers can pitch to all shortlisted creators in bulk.
