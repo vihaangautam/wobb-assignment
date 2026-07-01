@@ -50,13 +50,16 @@ To elevate this project from a prototype to a production-grade application, I co
 - **Layout Overflow:** Fixed the `#root` container having a fixed `width: 1126px`, which caused a horizontal scrollbar on mobile/tablets. Changed to `max-width: 1200px` with fluid responsive padding.
 - **Dead Code Cleanup:** Removed the unused `SearchBar.tsx` file, dead `clickCount` state variables, and `console.log` statements.
 
-### 2. UI/UX Redesign
-- **Premium Aesthetics:** Implemented a modern dark-mode-first glassmorphism theme, featuring custom deep dark card colors, subtle border glows, and purple-indigo brand gradients.
+### 2. UI/UX Redesign (Editorial Brutalist Overhaul)
+- **Signature Aesthetics:** Overhauled the application with a premium "Editorial Brutalist" layout inspired by `vihaangautam.dev`—featuring a warm cream paper background (`#f0ece2`), sharp corners (`rounded-md`), and thick black borders (`border-2 border-border`).
+- **Typography Overhaul:** Loaded and integrated the `JetBrains Mono` font for all statistics, tags, list descriptions, buttons, and metrics grids.
+- **Offset Shadow Hover States:** Integrated translation offset effects—hovering interactive cards or buttons lifts them slightly (`translateY(-2px)`) and projects a solid flat offset shadow (`4px 4px 0px border`).
+- **Left-Aligned Hero & rotated Tags:** Restructured the search hero header with a massive bold title, uppercase monospace tag badges (slighly rotated), and punchy monospace taglines.
 - **Manual Theme Switcher:** Added a manual dark/light toggle button in the header that persists settings in `localStorage` and falls back to system preferences.
-- **Sticky Navbar:** Crafted a blur-backdrop navigation header containing the WobbVibe brand mark and a floating heart shortlist counter button.
-- **Pill Filter Controls:** Replaced the generic platform selection buttons with pill tabs featuring platform-specific hover scales, active gradients, and platform brand icons.
-- **Slide-over Shortlist Panel:** Designed an elegant slide-over drawer that pulls out from the right to manage selected creators in real time without taking the user away from their discovery flow.
-- **Animated Skeleton Loaders:** Added beautiful CSS-pulsing loading skeleton pages for profile details loading states.
+- **Sticky Navbar & Cyan Highlight:** Crafted a navigation header with a full-width cyan accent highlight bar, featuring the `wobb.vibe` mark.
+- **Platform Pills:** Overhauled platform filters with flat monochrome borders, bold monospace tags, and selected solid black/white fills.
+- **Slide-over Shortlist Panel:** Designed an elegant slide-over drawer that pulls out from the right to manage selected creators in real-time, featuring sharp borders and monospace labels.
+- **Animated Skeleton Loaders:** Added matching CSS-pulsing loading skeleton layouts for profile detail views.
 - **Growth History Analysis:** Built a growth history analytics table on the profile detail view that extracts and lists month-on-month follower and average likes trends.
 - **Performance-first Empty States:** Created friendly, illustrated empty states for search queries and shortlists that return no results.
 
