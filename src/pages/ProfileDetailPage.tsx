@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { VerifiedBadge } from "@/components/VerifiedBadge";
-import type { FullUserProfile, Platform, ProfileDetailResponse } from "@/types";
+import type { FullUserProfile, Platform, ProfileDetailResponse, StatHistoryItem } from "@/types";
 import { formatFollowers, formatEngagementRate } from "@/utils/formatters";
 import { loadProfileByUsername } from "@/utils/profileLoader";
 import { AddToListButton } from "@/features/shortlist/components/AddToListButton";
@@ -16,7 +16,8 @@ import {
   MessageCircle,
   Eye,
   Activity,
-  AlertTriangle
+  AlertTriangle,
+  TrendingUp
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -62,11 +63,37 @@ export function ProfileDetailPage() {
   if (!loaded) {
     return (
       <Layout>
-        <div className="max-w-4xl mx-auto flex flex-col items-center justify-center py-24 gap-4">
-          <div className="w-12 h-12 border-4 border-purple-500/20 border-t-purple-600 rounded-full animate-spin" />
-          <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 animate-pulse">
-            Loading analytics for @{username}...
-          </p>
+        <div className="max-w-5xl mx-auto flex flex-col gap-8 py-4">
+          {/* Back link placeholder */}
+          <div className="h-5 w-28 bg-gray-200 dark:bg-dark-300 rounded-lg animate-pulse" />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            {/* Left panel placeholder */}
+            <div className="bg-white dark:bg-dark-50 border border-gray-200/80 dark:border-dark-300 rounded-3xl p-6 shadow-sm flex flex-col items-center gap-4 animate-pulse">
+              <div className="w-28 h-28 bg-gray-200 dark:bg-dark-300 rounded-full" />
+              <div className="h-6 w-36 bg-gray-200 dark:bg-dark-300 rounded-lg" />
+              <div className="h-4 w-24 bg-gray-200 dark:bg-dark-300 rounded-lg" />
+              <div className="h-16 w-full bg-gray-100 dark:bg-dark-200 rounded-xl" />
+              <div className="h-10 w-full bg-gray-200 dark:bg-dark-300 rounded-xl" />
+              <div className="h-10 w-full bg-gray-200 dark:bg-dark-300 rounded-xl" />
+            </div>
+            
+            {/* Right panel placeholder */}
+            <div className="lg:col-span-2 flex flex-col gap-4 animate-pulse">
+              <div className="h-6 w-48 bg-gray-200 dark:bg-dark-300 rounded-lg mb-2" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="bg-white dark:bg-dark-50 border border-gray-200/80 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex gap-4">
+                    <div className="w-12 h-12 bg-gray-200 dark:bg-dark-300 rounded-xl flex-shrink-0" />
+                    <div className="flex-1 flex flex-col gap-2">
+                      <div className="h-3 w-16 bg-gray-200 dark:bg-dark-300 rounded" />
+                      <div className="h-6 w-24 bg-gray-200 dark:bg-dark-300 rounded" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     );
@@ -269,18 +296,38 @@ export function ProfileDetailPage() {
               )}
 
               {/* Stat card: Total Engagements */}
-              {user.engagements !== undefined && (
-                <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex items-start gap-4">
-                  <div className="p-3 bg-rose-50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 rounded-xl">
-                    <Activity size={20} />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Engagements</div>
-                    <div className="text-2xl font-black text-h">{formatFollowers(user.engagements)}</div>
-                  </div>
-                </div>
-              )}
             </div>
+
+            {/* Stat History section */}
+            {user.stat_history && user.stat_history.length > 0 && (
+              <div className="mt-8 bg-white dark:bg-dark-50 border border-gray-200/80 dark:border-dark-300 rounded-3xl p-6 shadow-sm text-left">
+                <h3 className="text-lg font-black text-h tracking-tight mb-4 flex items-center gap-2">
+                  <TrendingUp size={18} className="text-purple-500" />
+                  <span>Growth History</span>
+                </h3>
+                
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm border-collapse text-left">
+                    <thead>
+                      <tr className="border-b border-gray-200 dark:border-dark-300 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                        <th className="pb-3 pr-4">Month</th>
+                        <th className="pb-3 px-4">Followers</th>
+                        <th className="pb-3 pl-4 text-right">Avg Likes</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 dark:divide-dark-200/50">
+                      {user.stat_history.map((h: StatHistoryItem, i: number) => (
+                        <tr key={i} className="hover:bg-gray-50/50 dark:hover:bg-dark-100/30 transition-colors">
+                          <td className="py-3 pr-4 font-semibold text-h">{h.month}</td>
+                          <td className="py-3 px-4 text-gray-600 dark:text-gray-300">{formatFollowers(h.followers)}</td>
+                          <td className="py-3 pl-4 text-right text-gray-600 dark:text-gray-300">{formatFollowers(h.avg_likes)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
