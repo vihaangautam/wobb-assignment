@@ -27,15 +27,15 @@ export function SearchPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="text-center max-w-2xl mx-auto mb-10 mt-6 animate-fade-in">
+      <section className="text-center max-w-4xl mx-auto mb-10 mt-6 animate-fade-in px-4">
         <div className="gofundme-badge mb-4">
           <Sparkles size={12} />
           <span>Discover Top Creators</span>
         </div>
-        <h1 className="text-4xl font-extrabold text-h tracking-tight mb-4 sm:text-5xl">
+        <h1 className="text-3xl font-black text-h tracking-tight mb-4 sm:text-4xl md:text-5xl leading-tight">
           Successful collaborations start here
         </h1>
-        <p className="text-base text-gray-500 dark:text-gray-400 max-w-lg mx-auto">
+        <p className="text-base text-gray-500 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
           Search, filter, and shortlist premium creators across Instagram, YouTube, and TikTok in just a few clicks.
         </p>
       </section>
