@@ -35,7 +35,7 @@ export function SearchPage() {
         <h1 className="text-3xl font-black text-h tracking-tight mb-4 sm:text-4xl md:text-5xl leading-tight">
           Successful collaborations start here
         </h1>
-        <p className="text-base text-gray-500 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
           Search, filter, and shortlist premium creators across Instagram, YouTube, and TikTok in just a few clicks.
         </p>
       </section>
