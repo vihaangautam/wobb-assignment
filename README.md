@@ -99,6 +99,8 @@ To elevate this project from a prototype to a production-grade application, I co
 | `zustand` | Global shortlist state management | Required by the brief; lightweight, fast, and easy to persist to local storage |
 | `lucide-react` | Modern, uniform UI iconography | Provides a clean, modern, and tree-shakeable icon set |
 | `clsx` | Conditional CSS class joining | Clean utility for toggling Tailwind classes dynamically |
+| `vitest` | Unit testing framework runner | Next-generation fast test runner designed specifically for Vite |
+| `happy-dom` | In-memory web browser simulation | Fast, lightweight DOM mock environment for testing store persistence and APIs |
 
 ---
 
