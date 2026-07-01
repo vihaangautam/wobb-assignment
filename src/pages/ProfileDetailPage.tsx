@@ -29,6 +29,7 @@ export function ProfileDetailPage() {
     null
   );
   const [loaded, setLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     if (!username) return;
@@ -155,11 +156,18 @@ export function ProfileDetailPage() {
             
             {/* Avatar with Ring */}
             <div className="relative mb-6">
-              <img
-                src={user.picture}
-                alt={`${user.fullname}'s profile photo`}
-                className="w-28 h-28 rounded-full object-cover border-2 border-white dark:border-dark-50 shadow-md ring-4 ring-purple-500/20"
-              />
+              {imgError ? (
+                <div className="w-28 h-28 rounded-full bg-purple-100 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-3xl border border-purple-200 dark:border-purple-800 shadow-md ring-4 ring-purple-500/20">
+                  {user.fullname ? user.fullname.charAt(0) : user.username.charAt(0).toUpperCase()}
+                </div>
+              ) : (
+                <img
+                  src={user.picture}
+                  alt={`${user.fullname}'s profile photo`}
+                  onError={() => setImgError(true)}
+                  className="w-28 h-28 rounded-full object-cover border-2 border-white dark:border-dark-50 shadow-md ring-4 ring-purple-500/20"
+                />
+              )}
               <span className={clsx(
                 "absolute -bottom-1 -right-1 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow-sm",
                 platformBadgeColor(platform)

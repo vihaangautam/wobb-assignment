@@ -30,6 +30,8 @@ export const ProfileCard = React.memo(function ProfileCard({
     }
   };
 
+  const [imgError, setImgError] = React.useState(false);
+
   return (
     <Link
       to={`/profile/${profile.username}?platform=${platform}`}
@@ -43,15 +45,27 @@ export const ProfileCard = React.memo(function ProfileCard({
 
       {/* Avatar Container */}
       <div className="relative flex-shrink-0">
-        <img
-          src={profile.picture}
-          alt={`${profile.fullname}'s profile photo`}
-          className={clsx(
-            "w-16 h-16 rounded-full object-cover border border-gray-100 dark:border-dark-200 shadow-inner transition-transform duration-300 group-hover:scale-105",
-            platformRing(platform)
-          )}
-          loading="lazy"
-        />
+        {imgError ? (
+          <div
+            className={clsx(
+              "w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-xl border border-purple-200 dark:border-purple-800 transition-transform duration-300 group-hover:scale-105",
+              platformRing(platform)
+            )}
+          >
+            {profile.fullname ? profile.fullname.charAt(0) : profile.username.charAt(0).toUpperCase()}
+          </div>
+        ) : (
+          <img
+            src={profile.picture}
+            alt={`${profile.fullname}'s profile photo`}
+            onError={() => setImgError(true)}
+            className={clsx(
+              "w-16 h-16 rounded-full object-cover border border-gray-100 dark:border-dark-200 shadow-inner transition-transform duration-300 group-hover:scale-105",
+              platformRing(platform)
+            )}
+            loading="lazy"
+          />
+        )}
       </div>
 
       {/* Profile Details */}
