@@ -50,15 +50,16 @@ To elevate this project from a prototype to a production-grade application, I co
 - **Layout Overflow:** Fixed the `#root` container having a fixed `width: 1126px`, which caused a horizontal scrollbar on mobile/tablets. Changed to `max-width: 1200px` with fluid responsive padding.
 - **Dead Code Cleanup:** Removed the unused `SearchBar.tsx` file, dead `clickCount` state variables, and `console.log` statements.
 
-### 2. UI/UX Redesign (Editorial Brutalist Overhaul)
-- **Signature Aesthetics:** Overhauled the application with a premium "Editorial Brutalist" layout inspired by `vihaangautam.dev`—featuring a warm cream paper background (`#f0ece2`), sharp corners (`rounded-md`), and thick black borders (`border-2 border-border`).
-- **Typography Overhaul:** Loaded and integrated the `JetBrains Mono` font for all statistics, tags, list descriptions, buttons, and metrics grids.
-- **Offset Shadow Hover States:** Integrated translation offset effects—hovering interactive cards or buttons lifts them slightly (`translateY(-2px)`) and projects a solid flat offset shadow (`4px 4px 0px border`).
-- **Left-Aligned Hero & rotated Tags:** Restructured the search hero header with a massive bold title, uppercase monospace tag badges (slighly rotated), and punchy monospace taglines.
+### 2. UI/UX Redesign (Premium GoFundMe-Inspired Overhaul)
+- **Signature Aesthetics:** Overhauled the application with a premium, clean layout inspired by modern crowdfunding platforms (e.g., GoFundMe)—featuring a crisp white background (`#ffffff`), warm sand accent sections (`#faf8f0`), and vibrant forest green branding tones (`#008060`).
+- **Pill Shapes & Circular Elements:** Designed platform selection tabs, search inputs, and CTA buttons as fully rounded pills (`rounded-full`).
+- **Circular Avatars with Brand Ring Borders:** Profile pictures are styled as circular elements (`rounded-full`), surrounded by platform-specific active rings.
+- **Soft Drop Shadows:** Replaced all brutalist flat borders with smooth, blurry drop shadows (`0 8px 30px rgba(0,0,0,0.05)`) that float cards gracefully.
+- **Spacious Layouts:** Centered landing titles and metadata grids to match the friendly organic hierarchy of modern crowdfunding portals.
 - **Manual Theme Switcher:** Added a manual dark/light toggle button in the header that persists settings in `localStorage` and falls back to system preferences.
-- **Sticky Navbar & Cyan Highlight:** Crafted a navigation header with a full-width cyan accent highlight bar, featuring the `wobb.vibe` mark.
+- **Sticky Navbar:** Crafted a clean, borderless navigation header with a soft bottom shadow, featuring the `wobbvibe` logo.
 - **Platform Pills:** Overhauled platform filters with flat monochrome borders, bold monospace tags, and selected solid black/white fills.
-- **Slide-over Shortlist Panel:** Designed an elegant slide-over drawer that pulls out from the right to manage selected creators in real-time, featuring sharp borders and monospace labels.
+- **Slide-over Shortlist Panel:** Designed an elegant slide-over drawer that pulls out from the right to manage selected creators in real-time.
 - **Animated Skeleton Loaders:** Added matching CSS-pulsing loading skeleton layouts for profile detail views.
 - **Growth History Analysis:** Built a growth history analytics table on the profile detail view that extracts and lists month-on-month follower and average likes trends.
 - **Performance-first Empty States:** Created friendly, illustrated empty states for search queries and shortlists that return no results.
