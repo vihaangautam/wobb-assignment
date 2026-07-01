@@ -26,6 +26,11 @@
   --color-dark-300: #34423d;
   --color-dark-400: #465952;
 
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-border: var(--border);
+  --color-text-h: var(--text-h);
+
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, monospace;
