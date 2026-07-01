@@ -48,7 +48,7 @@ export function PlatformFilter({
               type="button"
               onClick={() => onChange(p)}
               className={clsx(
-                "flex items-center gap-2.5 px-6 py-2.5 rounded-full border font-bold text-xs uppercase transition-all duration-200 cursor-pointer hover:scale-102 active:scale-98 shadow-sm",
+                "flex items-center gap-2.5 px-6 py-2.5 rounded-full border font-bold text-xs uppercase transition-all duration-200 cursor-pointer hover:scale-102 active:scale-98 shadow-sm leading-none",
                 getPlatformColors(isSelected)
               )}
             >

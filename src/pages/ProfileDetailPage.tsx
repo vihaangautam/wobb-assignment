@@ -230,7 +230,7 @@ export function ProfileDetailPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
               
               {/* Stat card: Followers */}
-              <div className="gofundme-card p-5 flex items-start gap-4">
+              <div className="gofundme-card p-5 flex items-center gap-4">
                 <div className="p-3 bg-green-50 dark:bg-green-950/20 text-green-600 dark:text-green-400 rounded-2xl">
                   <Users size={20} />
                 </div>
@@ -241,7 +241,7 @@ export function ProfileDetailPage() {
               </div>
 
               {/* Stat card: Engagement Rate */}
-              <div className="gofundme-card p-5 flex items-start gap-4">
+              <div className="gofundme-card p-5 flex items-center gap-4">
                 <div className="p-3 bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 rounded-2xl">
                   <BarChart3 size={20} />
                 </div>
@@ -253,7 +253,7 @@ export function ProfileDetailPage() {
 
               {/* Stat card: Posts Count */}
               {user.posts_count !== undefined && (
-                <div className="gofundme-card p-5 flex items-start gap-4">
+                <div className="gofundme-card p-5 flex items-center gap-4">
                   <div className="p-3 bg-indigo-50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 rounded-2xl">
                     <FileText size={20} />
                   </div>
@@ -266,7 +266,7 @@ export function ProfileDetailPage() {
 
               {/* Stat card: Average Likes */}
               {user.avg_likes !== undefined && (
-                <div className="gofundme-card p-5 flex items-start gap-4">
+                <div className="gofundme-card p-5 flex items-center gap-4">
                   <div className="p-3 bg-pink-50 dark:bg-pink-950/20 text-pink-600 dark:text-pink-400 rounded-2xl">
                     <Heart size={20} />
                   </div>
@@ -279,7 +279,7 @@ export function ProfileDetailPage() {
 
               {/* Stat card: Average Comments */}
               {user.avg_comments !== undefined && (
-                <div className="gofundme-card p-5 flex items-start gap-4">
+                <div className="gofundme-card p-5 flex items-center gap-4">
                   <div className="p-3 bg-orange-50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400 rounded-2xl">
                     <MessageCircle size={20} />
                   </div>
@@ -292,7 +292,7 @@ export function ProfileDetailPage() {
 
               {/* Stat card: Average Views */}
               {user.avg_views !== undefined && user.avg_views > 0 && (
-                <div className="gofundme-card p-5 flex items-start gap-4">
+                <div className="gofundme-card p-5 flex items-center gap-4">
                   <div className="p-3 bg-teal-50 dark:bg-teal-950/20 text-teal-600 dark:text-teal-400 rounded-2xl">
                     <Eye size={20} />
                   </div>
