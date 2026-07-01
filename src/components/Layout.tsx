@@ -1,6 +1,6 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { Heart, Sparkles } from "lucide-react";
+import { Heart, Sparkles, Sun, Moon } from "lucide-react";
 import { useShortlistStore } from "@/features/shortlist/store/useShortlistStore";
 import { ShortlistPanel } from "@/features/shortlist/components/ShortlistPanel";
 
@@ -11,7 +11,25 @@ interface LayoutProps {
 
 export function Layout({ children, title }: LayoutProps) {
   const [panelOpen, setPanelOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
   const profileCount = useShortlistStore((s) => s.profiles.length);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
+
+  const toggleTheme = () => setIsDark(!isDark);
 
   return (
     <div className="flex flex-col min-h-screen bg-secondary transition-colors duration-200">
@@ -30,29 +48,42 @@ export function Layout({ children, title }: LayoutProps) {
             </span>
           </Link>
 
-          <button
-            type="button"
-            onClick={() => setPanelOpen(true)}
-            className="relative inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl border border-gray-200 dark:border-dark-300 bg-white dark:bg-dark-100 hover:bg-gray-50 dark:hover:bg-dark-200 text-h shadow-sm hover:shadow transition-all duration-200 cursor-pointer"
-            aria-label={`Open shortlist — ${profileCount} profiles`}
-          >
-            <Heart
-              size={16}
-              className={
-                profileCount > 0
-                  ? "fill-purple-600 text-purple-600 animate-pulse"
-                  : "text-gray-400 dark:text-gray-500"
-              }
-            />
-            <span>Shortlist</span>
-            {profileCount > 0 ? (
-              <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-xs font-bold text-white bg-purple-600 rounded-full animate-bounce">
-                {profileCount}
-              </span>
-            ) : (
-              <span className="text-xs text-gray-400 dark:text-gray-500">0</span>
-            )}
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle Button */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="p-2.5 rounded-xl border border-gray-200 dark:border-dark-300 bg-white dark:bg-dark-100 hover:bg-gray-50 dark:hover:bg-dark-200 text-h shadow-sm hover:shadow transition-all duration-200 cursor-pointer"
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+
+            {/* Shortlist Trigger Button */}
+            <button
+              type="button"
+              onClick={() => setPanelOpen(true)}
+              className="relative inline-flex items-center gap-2 px-4 py-2 h-[38px] text-sm font-semibold rounded-xl border border-gray-200 dark:border-dark-300 bg-white dark:bg-dark-100 hover:bg-gray-50 dark:hover:bg-dark-200 text-h shadow-sm hover:shadow transition-all duration-200 cursor-pointer"
+              aria-label={`Open shortlist — ${profileCount} profiles`}
+            >
+              <Heart
+                size={16}
+                className={
+                  profileCount > 0
+                    ? "fill-purple-600 text-purple-600 animate-pulse"
+                    : "text-gray-400 dark:text-gray-500"
+                }
+              />
+              <span>Shortlist</span>
+              {profileCount > 0 ? (
+                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-xs font-bold text-white bg-purple-600 rounded-full animate-bounce">
+                  {profileCount}
+                </span>
+              ) : (
+                <span className="text-xs text-gray-400 dark:text-gray-500">0</span>
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
