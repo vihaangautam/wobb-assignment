@@ -29,25 +29,25 @@ export function AddToListButton({ profile, size = "sm" }: AddToListButtonProps) 
       onClick={handleClick}
       aria-label={isInList ? `Remove ${profile.fullName} from shortlist` : `Add ${profile.fullName} to shortlist`}
       className={clsx(
-        "inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all duration-200 cursor-pointer active:scale-95",
-        "focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2 dark:focus:ring-offset-dark-50",
-        size === "sm" && "px-4 py-2 text-xs",
-        size === "md" && "px-6 py-3 text-sm w-full",
+        "inline-flex items-center justify-center gap-2 font-mono font-bold rounded-md transition-all duration-150 cursor-pointer active:translate-y-0.5 active:shadow-sm",
+        "focus:outline-none focus:ring-3 focus:ring-accent",
+        size === "sm" && "px-4 py-2 text-xs border-2 border-border shadow-sm hover:-translate-y-0.5 hover:shadow-md",
+        size === "md" && "px-6 py-3 text-sm w-full border-2 border-border shadow-md hover:-translate-y-0.5 hover:shadow-lg",
         isInList
-          ? "bg-purple-50 dark:bg-purple-950/20 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 dark:hover:bg-purple-900/30"
-          : "bg-gray-100 dark:bg-dark-200 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-dark-300 hover:bg-gray-200 dark:hover:bg-dark-300"
+          ? "bg-accent text-h"
+          : "bg-white dark:bg-dark-100 text-h hover:bg-bg-secondary"
       )}
     >
       <Heart
-        size={size === "sm" ? 14 : 16}
+        size={size === "sm" ? 12 : 14}
         className={clsx(
-          "transition-all duration-200",
+          "transition-all duration-150",
           isInList
-            ? "fill-purple-600 text-purple-600 dark:fill-purple-400 dark:text-purple-400 scale-110"
+            ? "fill-h text-h scale-110"
             : "text-gray-500 dark:text-gray-400"
         )}
       />
-      <span>{isInList ? "Shortlisted" : "Add to List"}</span>
+      <span className="uppercase tracking-wider">{isInList ? "SHORTLISTED" : "ADD TO LIST"}</span>
     </button>
   );
 }

@@ -19,7 +19,7 @@ import {
   AlertTriangle,
   TrendingUp
 } from "lucide-react";
-import clsx from "clsx";
+
 
 export function ProfileDetailPage() {
   const { username } = useParams<{ username: string }>();
@@ -123,18 +123,7 @@ export function ProfileDetailPage() {
 
   const user: FullUserProfile = profileData.data.user_profile;
 
-  const platformBadgeColor = (p: Platform) => {
-    switch (p) {
-      case "instagram":
-        return "bg-pink-50 dark:bg-pink-950/20 text-pink-600 dark:text-pink-400";
-      case "youtube":
-        return "bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400";
-      case "tiktok":
-        return "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200";
-      default:
-        return "bg-purple-50 dark:bg-purple-950/20 text-purple-600 dark:text-purple-400";
-    }
-  };
+
 
   return (
     <Layout>
@@ -152,12 +141,12 @@ export function ProfileDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           
           {/* Left Panel: Creator Profile Info Card */}
-          <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 rounded-3xl p-6 shadow-sm text-center flex flex-col items-center">
+          <div className="brutalist-card p-6 flex flex-col items-center">
             
             {/* Avatar with Ring */}
             <div className="relative mb-6">
               {imgError ? (
-                <div className="w-28 h-28 rounded-full bg-purple-100 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-3xl border border-purple-200 dark:border-purple-800 shadow-md ring-4 ring-purple-500/20">
+                <div className="w-28 h-28 rounded-md bg-accent-light text-h flex items-center justify-center font-mono font-bold text-3xl border-2 border-border shadow-sm">
                   {user.fullname ? user.fullname.charAt(0) : user.username.charAt(0).toUpperCase()}
                 </div>
               ) : (
@@ -165,35 +154,32 @@ export function ProfileDetailPage() {
                   src={user.picture}
                   alt={`${user.fullname}'s profile photo`}
                   onError={() => setImgError(true)}
-                  className="w-28 h-28 rounded-full object-cover border-2 border-white dark:border-dark-50 shadow-md ring-4 ring-purple-500/20"
+                  className="w-28 h-28 rounded-md object-cover border-2 border-border shadow-sm"
                 />
               )}
-              <span className={clsx(
-                "absolute -bottom-1 -right-1 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow-sm",
-                platformBadgeColor(platform)
-              )}>
+              <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 brutalist-badge bg-accent text-h text-[10px] font-bold py-0.5 px-2.5">
                 {platform}
               </span>
             </div>
 
             {/* Names */}
-            <h2 className="text-2xl font-black text-h tracking-tight mb-1 flex items-center justify-center gap-1.5">
+            <h2 className="text-2xl font-mono font-bold text-h tracking-tighter mb-1 flex items-center justify-center gap-1.5">
               <span>@{user.username}</span>
               <VerifiedBadge verified={user.is_verified} />
             </h2>
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+            <p className="text-xs font-bold text-gray-500 dark:text-gray-400 mb-4 uppercase tracking-wider">
               {user.fullname}
             </p>
 
             {/* Description */}
             {user.description && (
-              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed border-t border-b border-gray-100 dark:border-dark-200/50 py-4 mb-6 text-left w-full">
+              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed border-t-2 border-b-2 border-border py-4 mb-6 text-left w-full">
                 {user.description}
               </p>
             )}
 
             {/* Action Buttons */}
-            <div className="flex flex-col gap-3 w-full">
+            <div className="flex flex-col gap-3.5 w-full">
               <AddToListButton
                 profile={{
                   username: user.username,
@@ -211,10 +197,10 @@ export function ProfileDetailPage() {
                   href={user.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 border border-gray-200 dark:border-dark-300 bg-white dark:bg-dark-100 hover:bg-gray-50 dark:hover:bg-dark-200 text-h text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 cursor-pointer"
+                  className="brutalist-btn inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 text-xs"
                 >
-                  <span>View profile on platform</span>
-                  <ExternalLink size={14} />
+                  <span>VIEW PROFILE ON PLATFORM</span>
+                  <ExternalLink size={12} />
                 </a>
               )}
             </div>
@@ -222,111 +208,109 @@ export function ProfileDetailPage() {
 
           {/* Right Panel: Analytics & Stats Grid */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg font-black text-h tracking-tight mb-4 flex items-center gap-2">
-              <Activity size={18} className="text-purple-500" />
+            <h3 className="text-sm font-mono font-bold text-h tracking-wider uppercase mb-5 flex items-center gap-2">
+              <Activity size={16} className="text-accent" />
               <span>Performance Analytics</span>
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
               
               {/* Stat card: Followers */}
-              <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex items-start gap-4">
-                <div className="p-3 bg-purple-50 dark:bg-purple-950/20 text-purple-600 dark:text-purple-400 rounded-xl">
-                  <Users size={20} />
+              <div className="brutalist-card p-5 flex items-start gap-4">
+                <div className="p-2.5 bg-accent-light border-2 border-border text-h rounded-md flex-shrink-0">
+                  <Users size={18} />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Followers</div>
-                  <div className="text-2xl font-black text-h">{formatFollowers(user.followers)}</div>
+                  <div className="text-[10px] font-mono font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Followers</div>
+                  <div className="text-3xl font-mono font-bold text-h tracking-tight">{formatFollowers(user.followers)}</div>
                 </div>
               </div>
 
               {/* Stat card: Engagement Rate */}
-              <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex items-start gap-4">
-                <div className="p-3 bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 rounded-xl">
-                  <BarChart3 size={20} />
+              <div className="brutalist-card p-5 flex items-start gap-4">
+                <div className="p-2.5 bg-accent-light border-2 border-border text-h rounded-md flex-shrink-0">
+                  <BarChart3 size={18} />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Engagement Rate</div>
-                  <div className="text-2xl font-black text-h">{formatEngagementRate(user.engagement_rate)}</div>
+                  <div className="text-[10px] font-mono font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Engagement Rate</div>
+                  <div className="text-3xl font-mono font-bold text-h tracking-tight">{formatEngagementRate(user.engagement_rate)}</div>
                 </div>
               </div>
 
               {/* Stat card: Posts Count */}
               {user.posts_count !== undefined && (
-                <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex items-start gap-4">
-                  <div className="p-3 bg-green-50 dark:bg-green-950/20 text-green-600 dark:text-green-400 rounded-xl">
-                    <FileText size={20} />
+                <div className="brutalist-card p-5 flex items-start gap-4">
+                  <div className="p-2.5 bg-accent-light border-2 border-border text-h rounded-md flex-shrink-0">
+                    <FileText size={18} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Total Posts</div>
-                    <div className="text-2xl font-black text-h">{user.posts_count}</div>
+                    <div className="text-[10px] font-mono font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Total Posts</div>
+                    <div className="text-3xl font-mono font-bold text-h tracking-tight">{user.posts_count}</div>
                   </div>
                 </div>
               )}
 
               {/* Stat card: Average Likes */}
               {user.avg_likes !== undefined && (
-                <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex items-start gap-4">
-                  <div className="p-3 bg-pink-50 dark:bg-pink-950/20 text-pink-600 dark:text-pink-400 rounded-xl">
-                    <Heart size={20} />
+                <div className="brutalist-card p-5 flex items-start gap-4">
+                  <div className="p-2.5 bg-accent-light border-2 border-border text-h rounded-md flex-shrink-0">
+                    <Heart size={18} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Average Likes</div>
-                    <div className="text-2xl font-black text-h">{formatFollowers(user.avg_likes)}</div>
+                    <div className="text-[10px] font-mono font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Average Likes</div>
+                    <div className="text-3xl font-mono font-bold text-h tracking-tight">{formatFollowers(user.avg_likes)}</div>
                   </div>
                 </div>
               )}
 
               {/* Stat card: Average Comments */}
               {user.avg_comments !== undefined && (
-                <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex items-start gap-4">
-                  <div className="p-3 bg-indigo-50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 rounded-xl">
-                    <MessageCircle size={20} />
+                <div className="brutalist-card p-5 flex items-start gap-4">
+                  <div className="p-2.5 bg-accent-light border-2 border-border text-h rounded-md flex-shrink-0">
+                    <MessageCircle size={18} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Avg Comments</div>
-                    <div className="text-2xl font-black text-h">{formatFollowers(user.avg_comments)}</div>
+                    <div className="text-[10px] font-mono font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Avg Comments</div>
+                    <div className="text-3xl font-mono font-bold text-h tracking-tight">{formatFollowers(user.avg_comments)}</div>
                   </div>
                 </div>
               )}
 
               {/* Stat card: Average Views */}
               {user.avg_views !== undefined && user.avg_views > 0 && (
-                <div className="bg-white dark:bg-dark-50 border border-gray-200 dark:border-dark-300 p-5 rounded-2xl shadow-sm flex items-start gap-4">
-                  <div className="p-3 bg-yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-400 rounded-xl">
-                    <Eye size={20} />
+                <div className="brutalist-card p-5 flex items-start gap-4">
+                  <div className="p-2.5 bg-accent-light border-2 border-border text-h rounded-md flex-shrink-0">
+                    <Eye size={18} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Average Views</div>
-                    <div className="text-2xl font-black text-h">{formatFollowers(user.avg_views)}</div>
+                    <div className="text-[10px] font-mono font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Average Views</div>
+                    <div className="text-3xl font-mono font-bold text-h tracking-tight">{formatFollowers(user.avg_views)}</div>
                   </div>
                 </div>
               )}
-
-              {/* Stat card: Total Engagements */}
             </div>
 
             {/* Stat History section */}
             {user.stat_history && user.stat_history.length > 0 && (
-              <div className="mt-8 bg-white dark:bg-dark-50 border border-gray-200/80 dark:border-dark-300 rounded-3xl p-6 shadow-sm text-left">
-                <h3 className="text-lg font-black text-h tracking-tight mb-4 flex items-center gap-2">
-                  <TrendingUp size={18} className="text-purple-500" />
+              <div className="mt-8 brutalist-card p-6 text-left">
+                <h3 className="text-sm font-mono font-bold text-h tracking-wider uppercase mb-5 flex items-center gap-2">
+                  <TrendingUp size={16} className="text-accent" />
                   <span>Growth History</span>
                 </h3>
                 
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm border-collapse text-left">
+                  <table className="w-full text-xs font-mono border-collapse text-left">
                     <thead>
-                      <tr className="border-b border-gray-200 dark:border-dark-300 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                      <tr className="border-b-2 border-border text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
                         <th className="pb-3 pr-4">Month</th>
                         <th className="pb-3 px-4">Followers</th>
                         <th className="pb-3 pl-4 text-right">Avg Likes</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100 dark:divide-dark-200/50">
+                    <tbody className="divide-y-2 divide-border">
                       {user.stat_history.map((h: StatHistoryItem, i: number) => (
-                        <tr key={i} className="hover:bg-gray-50/50 dark:hover:bg-dark-100/30 transition-colors">
-                          <td className="py-3 pr-4 font-semibold text-h">{h.month}</td>
+                        <tr key={i} className="hover:bg-accent-light/10 transition-colors">
+                          <td className="py-3 pr-4 font-bold text-h uppercase">{h.month}</td>
                           <td className="py-3 px-4 text-gray-600 dark:text-gray-300">{formatFollowers(h.followers)}</td>
                           <td className="py-3 pl-4 text-right text-gray-600 dark:text-gray-300">{formatFollowers(h.avg_likes)}</td>
                         </tr>
