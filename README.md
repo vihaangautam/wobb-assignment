@@ -52,9 +52,12 @@ To elevate this project from a prototype to a production-grade application, I co
 
 ### 2. UI/UX Redesign
 - **Premium Aesthetics:** Implemented a modern dark-mode-first glassmorphism theme, featuring custom deep dark card colors, subtle border glows, and purple-indigo brand gradients.
+- **Manual Theme Switcher:** Added a manual dark/light toggle button in the header that persists settings in `localStorage` and falls back to system preferences.
 - **Sticky Navbar:** Crafted a blur-backdrop navigation header containing the WobbVibe brand mark and a floating heart shortlist counter button.
 - **Pill Filter Controls:** Replaced the generic platform selection buttons with pill tabs featuring platform-specific hover scales, active gradients, and platform brand icons.
 - **Slide-over Shortlist Panel:** Designed an elegant slide-over drawer that pulls out from the right to manage selected creators in real time without taking the user away from their discovery flow.
+- **Animated Skeleton Loaders:** Added beautiful CSS-pulsing loading skeleton pages for profile details loading states.
+- **Growth History Analysis:** Built a growth history analytics table on the profile detail view that extracts and lists month-on-month follower and average likes trends.
 - **Performance-first Empty States:** Created friendly, illustrated empty states for search queries and shortlists that return no results.
 
 ### 3. Context → Zustand
