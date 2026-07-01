@@ -30,6 +30,8 @@
   --color-accent-light: var(--accent-light);
   --color-border: var(--border);
   --color-text-h: var(--text-h);
+  --color-bg: var(--bg);
+  --color-bg-secondary: var(--bg-secondary);
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
