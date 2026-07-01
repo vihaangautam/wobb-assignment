@@ -13,10 +13,10 @@ function ShortlistItem({ profile, onRemove }: ShortlistItemProps) {
   const [imgError, setImgError] = useState(false);
   return (
     <li
-      className="flex items-center gap-3.5 p-3 bg-white dark:bg-dark-100 border-2 border-border rounded-md shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all duration-100 group animate-fade-in"
+      className="flex items-center gap-3.5 p-3 bg-white dark:bg-dark-100 border border-gray-100 dark:border-dark-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 group animate-fade-in"
     >
       {imgError ? (
-        <div className="w-10 h-10 rounded-md bg-accent-light text-h flex items-center justify-center font-mono font-bold text-sm border-2 border-border flex-shrink-0">
+        <div className="w-10 h-10 rounded-full bg-accent-light text-accent flex items-center justify-center font-bold text-sm border border-accent/10 flex-shrink-0">
           {profile.fullName ? profile.fullName.charAt(0) : profile.username.charAt(0).toUpperCase()}
         </div>
       ) : (
@@ -24,7 +24,7 @@ function ShortlistItem({ profile, onRemove }: ShortlistItemProps) {
           src={profile.avatarUrl}
           alt={`${profile.fullName}'s profile photo`}
           onError={() => setImgError(true)}
-          className="w-10 h-10 rounded-md object-cover border-2 border-border flex-shrink-0"
+          className="w-10 h-10 rounded-full object-cover border border-gray-100 dark:border-dark-200 flex-shrink-0"
           loading="lazy"
         />
       )}
@@ -32,19 +32,19 @@ function ShortlistItem({ profile, onRemove }: ShortlistItemProps) {
         <div className="font-bold text-sm text-h truncate mb-0.5">
           {profile.fullName}
         </div>
-        <div className="text-[10px] font-mono text-gray-500 dark:text-gray-400 truncate flex items-center gap-1.5 uppercase font-semibold">
+        <div className="text-xs text-gray-500 dark:text-gray-400 truncate flex items-center gap-1.5 font-medium">
           <span>@{profile.username}</span>
-          <span className="w-1 h-1 rounded-full bg-border" />
-          <span className="text-accent">{profile.platform}</span>
+          <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700" />
+          <span className="capitalize text-accent font-semibold">{profile.platform}</span>
         </div>
       </div>
       <button
         type="button"
         onClick={() => onRemove(profile.username)}
-        className="brutalist-btn p-1.5 flex items-center justify-center rounded-sm text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 active:translate-y-0.5 active:shadow-none"
+        className="p-2 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-all duration-200 cursor-pointer"
         aria-label={`Remove ${profile.fullName} from shortlist`}
       >
-        <Trash2 size={14} />
+        <Trash2 size={16} />
       </button>
     </li>
   );
@@ -65,7 +65,7 @@ export function ShortlistPanel({ isOpen, onClose }: ShortlistPanelProps) {
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/30 dark:bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
           onClick={onClose}
           aria-hidden="true"
         />
@@ -74,8 +74,8 @@ export function ShortlistPanel({ isOpen, onClose }: ShortlistPanelProps) {
       {/* Panel */}
       <aside
         className={clsx(
-          "fixed top-0 right-0 h-full w-full max-w-md bg-bg dark:bg-dark-50 border-l-3 border-border shadow-2xl z-50",
-          "transform transition-transform duration-250 ease-in-out",
+          "fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-dark-50 border-l border-gray-200 dark:border-dark-300 shadow-2xl z-50",
+          "transform transition-transform duration-300 ease-in-out",
           "flex flex-col",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
@@ -83,11 +83,11 @@ export function ShortlistPanel({ isOpen, onClose }: ShortlistPanelProps) {
         aria-label="Shortlisted profiles"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b-2 border-border bg-bg">
+        <div className="flex items-center justify-between p-5 border-b border-gray-200 dark:border-dark-300 bg-white dark:bg-dark-50">
           <div className="flex items-center gap-2">
             <Users size={18} className="text-accent" />
-            <h2 className="text-sm font-mono font-bold text-h m-0 tracking-wider uppercase">
-              SHORTLIST ({profiles.length})
+            <h2 className="text-base font-bold text-h m-0 tracking-tight">
+              Shortlist ({profiles.length})
             </h2>
           </div>
           <div className="flex items-center gap-3">
@@ -95,7 +95,7 @@ export function ShortlistPanel({ isOpen, onClose }: ShortlistPanelProps) {
               <button
                 type="button"
                 onClick={clearAll}
-                className="font-mono font-bold text-xs uppercase text-red-500 hover:text-red-600 dark:hover:text-red-400 hover:underline tracking-wider bg-transparent border-0 cursor-pointer"
+                className="text-xs font-bold text-red-500 hover:text-red-600 dark:hover:text-red-400 hover:underline bg-transparent border-0 cursor-pointer"
                 aria-label="Clear all shortlisted profiles"
               >
                 Clear all
@@ -104,10 +104,10 @@ export function ShortlistPanel({ isOpen, onClose }: ShortlistPanelProps) {
             <button
               type="button"
               onClick={onClose}
-              className="brutalist-btn p-1.5 flex items-center justify-center"
+              className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-dark-200 text-gray-500 dark:text-gray-400 transition-colors cursor-pointer"
               aria-label="Close shortlist panel"
             >
-              <X size={16} />
+              <X size={18} />
             </button>
           </div>
         </div>
@@ -116,15 +116,15 @@ export function ShortlistPanel({ isOpen, onClose }: ShortlistPanelProps) {
         <div className="flex-1 overflow-y-auto p-5">
           {profiles.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center text-gray-400 dark:text-gray-500 gap-5">
-              <div className="p-4 bg-white dark:bg-dark-100 border-2 border-border rounded-md shadow-sm">
-                <Users size={28} className="text-accent" strokeWidth={2} />
+              <div className="p-4 bg-accent-light text-accent rounded-full">
+                <Users size={28} strokeWidth={2} />
               </div>
               <div className="max-w-[260px]">
-                <p className="font-mono text-xs font-bold text-h uppercase tracking-wider mb-2">
-                  SHORTLIST IS EMPTY
+                <p className="text-sm font-bold text-h mb-2">
+                  Your shortlist is empty
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-mono uppercase tracking-wide">
-                  ADD CREATORS FROM THE DASHBOARD TO START YOUR CAMPAIGN.
+                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+                  Start adding creators from the dashboard or profile detail pages to track your campaign.
                 </p>
               </div>
             </div>

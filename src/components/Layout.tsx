@@ -33,18 +33,18 @@ export function Layout({ children, title }: LayoutProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg transition-colors duration-200">
-      {/* Sticky Header with Backdrop Blur */}
-      <header className="sticky top-0 z-30 w-full backdrop-blur-md bg-bg/85 border-b-2 border-border transition-colors duration-200">
+      {/* Header with soft shadow and rounded logo */}
+      <header className="sticky top-0 z-30 w-full backdrop-blur-md bg-bg/90 border-b border-border shadow-sm transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link
             to="/"
-            className="flex items-center gap-2 text-xl font-black text-h no-underline tracking-tighter font-mono group"
+            className="flex items-center gap-2 text-xl font-extrabold text-h no-underline tracking-tight group"
           >
-            <div className="p-1 border border-border bg-accent text-h rounded transition-all duration-200 group-hover:-rotate-3 group-hover:scale-105">
+            <div className="p-2 bg-accent-light text-accent rounded-full group-hover:scale-105 transition-transform duration-200">
               <Sparkles size={16} />
             </div>
             <span>
-              wobb<span className="text-accent font-light">.vibe</span>
+              wobb<span className="text-accent font-black">vibe</span>
             </span>
           </Link>
 
@@ -53,7 +53,7 @@ export function Layout({ children, title }: LayoutProps) {
             <button
               type="button"
               onClick={toggleTheme}
-              className="brutalist-btn p-2 flex items-center justify-center"
+              className="gofundme-btn p-2.5 rounded-full flex items-center justify-center"
               aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
@@ -63,7 +63,7 @@ export function Layout({ children, title }: LayoutProps) {
             <button
               type="button"
               onClick={() => setPanelOpen(true)}
-              className="brutalist-btn px-4 py-2 flex items-center gap-2 h-9 text-xs"
+              className="gofundme-btn px-5 py-2 h-9 text-xs rounded-full"
               aria-label={`Open shortlist — ${profileCount} profiles`}
             >
               <Heart
@@ -74,26 +74,24 @@ export function Layout({ children, title }: LayoutProps) {
                     : "text-gray-400 dark:text-gray-500"
                 }
               />
-              <span className="font-bold tracking-wider">SHORTLIST</span>
+              <span className="font-bold tracking-wide">Shortlist</span>
               {profileCount > 0 ? (
-                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 font-bold text-h bg-accent border border-border rounded-sm">
+                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-[9px] font-bold text-white bg-accent rounded-full">
                   {profileCount}
                 </span>
               ) : (
-                <span className="text-gray-400 dark:text-gray-500">0</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">0</span>
               )}
             </button>
           </div>
         </div>
-        {/* Full-width Cyan Accent Bar */}
-        <div className="h-[3px] w-full bg-accent" />
       </header>
 
       {/* Main Content Area */}
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
         {title && (
           <div className="mb-8 text-center sm:text-left">
-            <h1 className="text-4xl font-black text-h tracking-tight sm:text-5xl">
+            <h1 className="text-3xl font-black text-h tracking-tight sm:text-4xl">
               {title}
             </h1>
           </div>
@@ -102,13 +100,13 @@ export function Layout({ children, title }: LayoutProps) {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t-2 border-border py-8 bg-bg transition-colors duration-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-500">
-          <p>© 2026 wobb.vibe. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <span className="brutalist-badge bg-accent-light text-accent">
-              VIBE CODER INTERN ASSIGNMENT
-            </span>
+      <footer className="w-full border-t border-border py-8 bg-bg transition-colors duration-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-gray-500">
+          <p>© 2026 wobbvibe. All rights reserved.</p>
+          <div className="flex items-center gap-1">
+            <span>Built with</span>
+            <Heart size={11} className="fill-red-500 text-red-500" />
+            <span>for Wobb Coder Intern Assignment</span>
           </div>
         </div>
       </footer>

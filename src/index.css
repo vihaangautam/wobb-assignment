@@ -1,61 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #e0f7fa;
-  --color-brand-100: #b2ebf2;
-  --color-brand-200: #80deea;
-  --color-brand-300: #4dd0e1;
-  --color-brand-400: #26c6da;
-  --color-brand-500: #00bcd4;
-  --color-brand-600: #00acc1;
-  --color-brand-700: #0097a7;
-  --color-brand-800: #00838f;
-  --color-brand-900: #006064;
+  --color-brand-50: #e6f5f1;
+  --color-brand-100: #ccebe3;
+  --color-brand-200: #99d6c7;
+  --color-brand-300: #66c2ab;
+  --color-brand-400: #33ad8f;
+  --color-brand-500: #008060;     /* GoFundMe Signature Forest Green */
+  --color-brand-600: #007356;
+  --color-brand-700: #006048;
+  --color-brand-800: #004d3a;
+  --color-brand-900: #003326;
 
   --color-surface-0: #ffffff;
   --color-surface-50: #faf8f5;
-  --color-surface-100: #f5f2eb;
-  --color-surface-200: #e8e4dc;
-  --color-surface-300: #d5cfc5;
+  --color-surface-100: #f4f2ee;
+  --color-surface-200: #e8e6e1;
+  --color-surface-300: #d6d3cc;
 
-  --color-dark-0: #0f0f11;
-  --color-dark-50: #151518;
-  --color-dark-100: #1c1c20;
-  --color-dark-200: #26262b;
-  --color-dark-300: #35353c;
-  --color-dark-400: #494952;
+  --color-dark-0: #0e1211;       /* Warm dark forest black */
+  --color-dark-50: #141a18;      /* Warm dark charcoal/green card background */
+  --color-dark-100: #1c2421;
+  --color-dark-200: #26302c;
+  --color-dark-300: #34423d;
+  --color-dark-400: #465952;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: ui-monospace, monospace;
 }
 
 :root {
-  --text: #2d2d2d;
-  --text-h: #1a1a1a;
-  --bg: #f0ece2;              /* Warm cream/paper background from vihaangautam.dev */
-  --bg-secondary: #e8e4dc;    /* Warm secondary paper tone */
-  --border: #1a1a1a;          /* Thick black border */
-  --accent: #00b8d4;          /* Editorial cyan/teal */
-  --accent-light: #e0f7fa;
-  --accent-border: #1a1a1a;
+  --text: #4b5563;
+  --text-h: #111827;
+  --bg: #ffffff;                 /* Clean white page background */
+  --bg-secondary: #faf8f0;       /* Soft warm sand accent sections */
+  --border: #e5e7eb;             /* Soft light grey border */
+  --accent: #008060;             /* Forest green brand color */
+  --accent-light: #e6f5f1;       /* Light pastel green tint */
+  --accent-border: #99d6c7;
   
-  /* Stark box shadows */
-  --shadow-sm: 2px 2px 0px #1a1a1a;
-  --shadow-md: 4px 4px 0px #1a1a1a;
-  --shadow-lg: 8px 8px 0px #1a1a1a;
-  --shadow-glow: 0px 0px 0px transparent;
+  /* Soft, deep drop shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.05), 0 1px 8px rgba(0,0,0,0.02);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.08), 0 1px 12px rgba(0,0,0,0.04);
+  --shadow-glow: 0 0 20px rgba(0, 128, 96, 0.08);
   
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
 
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.6;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.011em;
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
@@ -70,19 +70,19 @@
 }
 
 :root.dark {
-  --text: #e5e1d8;            /* Warm cream text on dark background */
-  --text-h: #f3efe6;          /* Bright warm cream heading text */
-  --bg: #0f0f11;              /* Rich off-black background */
-  --bg-secondary: #151518;    /* Dark secondary panel card background */
-  --border: #f3efe6;          /* Contrast border for dark mode */
-  --accent: #00e5ff;          /* Vibrant cyan */
-  --accent-light: rgba(0, 229, 255, 0.12);
-  --accent-border: #f3efe6;
+  --text: #a4b0ab;            /* Warm green-grey text */
+  --text-h: #f1f5f3;          /* Bright warm grey text */
+  --bg: #0e1211;              /* Warm dark forest black */
+  --bg-secondary: #141a18;    /* Warm dark forest card backgrounds */
+  --border: #222b27;          /* Soft border in dark mode */
+  --accent: #05a87c;          /* Bright forest green */
+  --accent-light: rgba(5, 168, 124, 0.1);
+  --accent-border: #1c2421;
   
-  --shadow-sm: 2px 2px 0px #f3efe6;
-  --shadow-md: 4px 4px 0px #f3efe6;
-  --shadow-lg: 8px 8px 0px #f3efe6;
-  --shadow-glow: 0px 0px 0px transparent;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.4);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.6);
+  --shadow-glow: 0 0 25px rgba(5, 168, 124, 0.12);
 }
 
 /* ---- Global resets & base ---- */
@@ -96,11 +96,11 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #root {
-  max-width: 1280px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   min-height: 100svh;
@@ -112,30 +112,30 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-h);
-  letter-spacing: -0.03em;
-  font-weight: 900;           /* Extra bold editorial font weights */
+  letter-spacing: -0.022em;
+  font-weight: 800;           /* Clean thick headlines */
   margin: 0;
 }
 
 h1 {
-  font-size: 3rem;
-  line-height: 1.05;
+  font-size: 2.75rem;
+  line-height: 1.15;
   @media (max-width: 768px) {
-    font-size: 2.25rem;
+    font-size: 2.125rem;
   }
 }
 
 h2 {
-  font-size: 1.75rem;
-  line-height: 1.15;
+  font-size: 1.625rem;
+  line-height: 1.25;
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 }
 
 h3 {
-  font-size: 1.25rem;
-  line-height: 1.25;
+  font-size: 1.2rem;
+  line-height: 1.3;
 }
 
 p {
@@ -149,93 +149,108 @@ a {
 
 /* ---- Focus styling ---- */
 :focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* ---- Scrollbar styling ---- */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border: 2px solid var(--bg-secondary);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--text);
 }
 
-/* ---- Editorial Brutalist Custom Utilities ---- */
-.brutalist-card {
+/* ---- Premium GoFundMe-style Custom Utilities ---- */
+.gofundme-card {
   background-color: var(--color-surface-0);
-  border: 2px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.dark .brutalist-card {
-  background-color: var(--bg-secondary);
-}
-
-.brutalist-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px var(--border);
-}
-
-.brutalist-btn {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background-color: var(--color-surface-0);
-  color: var(--text-h);
-  border: 2px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.dark .brutalist-btn {
+.dark .gofundme-card {
   background-color: var(--bg-secondary);
-  color: var(--text-h);
 }
 
-.brutalist-btn:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px var(--border);
+.gofundme-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
-.brutalist-btn:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px var(--border);
-}
-
-.brutalist-badge {
-  font-family: var(--font-mono);
+.gofundme-btn {
+  font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 10px 22px;
+  border: 1px solid var(--border);
   background-color: var(--color-surface-0);
   color: var(--text-h);
-  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 8px;
 }
-.dark .brutalist-badge {
+.dark .gofundme-btn {
   background-color: var(--bg-secondary);
+  color: var(--text-h);
+}
+
+.gofundme-btn:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--text);
+  box-shadow: var(--shadow-md);
+}
+.dark .gofundme-btn:hover {
+  background-color: var(--color-dark-100);
+}
+
+.gofundme-btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  border-color: transparent;
+}
+.dark .gofundme-btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.gofundme-btn-primary:hover {
+  background-color: var(--color-brand-600);
+  border-color: transparent;
+  color: #ffffff;
+}
+.dark .gofundme-btn-primary:hover {
+  background-color: var(--color-brand-400);
+}
+
+.gofundme-badge {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  background-color: var(--accent-light);
+  color: var(--accent);
+  border-radius: var(--radius-xl);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* ---- Utility animations ---- */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -245,9 +260,9 @@ a {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-slide-in-right {
-  animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

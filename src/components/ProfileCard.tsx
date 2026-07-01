@@ -19,19 +19,35 @@ export const ProfileCard = React.memo(function ProfileCard({
 }: ProfileCardProps) {
   const [imgError, setImgError] = React.useState(false);
 
+  const platformRing = (p: Platform) => {
+    switch (p) {
+      case "instagram":
+        return "ring-2 ring-pink-500/50 ring-offset-2 dark:ring-offset-dark-50";
+      case "youtube":
+        return "ring-2 ring-red-500/50 ring-offset-2 dark:ring-offset-dark-50";
+      case "tiktok":
+        return "ring-2 ring-gray-900 dark:ring-gray-100 ring-offset-2 dark:ring-offset-dark-50";
+      default:
+        return "";
+    }
+  };
+
   return (
     <Link
       to={`/profile/${profile.username}?platform=${platform}`}
       className={clsx(
-        "brutalist-card flex flex-col sm:flex-row items-center gap-5 p-5 w-full no-underline text-inherit group",
+        "gofundme-card flex flex-col sm:flex-row items-center gap-4 p-5 w-full no-underline text-inherit group",
         "relative overflow-hidden"
       )}
     >
       {/* Avatar Container */}
-      <div className="relative flex-shrink-0 mb-2 sm:mb-0">
+      <div className="relative flex-shrink-0">
         {imgError ? (
           <div
-            className="w-16 h-16 rounded-md bg-accent-light text-h flex items-center justify-center font-mono font-bold text-xl border-2 border-border shadow-sm transition-transform duration-300 group-hover:scale-105"
+            className={clsx(
+              "w-16 h-16 rounded-full bg-accent-light text-accent flex items-center justify-center font-bold text-xl border border-accent/20 transition-transform duration-300 group-hover:scale-105",
+              platformRing(platform)
+            )}
           >
             {profile.fullname ? profile.fullname.charAt(0) : profile.username.charAt(0).toUpperCase()}
           </div>
@@ -40,39 +56,38 @@ export const ProfileCard = React.memo(function ProfileCard({
             src={profile.picture}
             alt={`${profile.fullname}'s profile photo`}
             onError={() => setImgError(true)}
-            className="w-16 h-16 rounded-md object-cover border-2 border-border transition-transform duration-300 group-hover:scale-105"
+            className={clsx(
+              "w-16 h-16 rounded-full object-cover border border-gray-100 dark:border-dark-200 shadow-inner transition-transform duration-300 group-hover:scale-105",
+              platformRing(platform)
+            )}
             loading="lazy"
           />
         )}
-        <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 brutalist-badge text-[8px] scale-90 py-0.5 px-1.5 bg-accent text-h border-border font-bold">
-          {platform}
-        </span>
       </div>
 
       {/* Profile Details */}
-      <div className="flex-1 text-center sm:text-left min-w-0 sm:pl-2">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
-          <span className="font-mono font-bold text-h text-base truncate group-hover:text-accent transition-colors duration-100">
+      <div className="flex-1 text-center sm:text-left min-w-0">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1.5">
+          <span className="font-bold text-h text-base truncate group-hover:text-accent transition-colors duration-200">
             @{profile.username}
           </span>
           <div className="flex justify-center sm:justify-start">
             <VerifiedBadge verified={profile.is_verified} />
           </div>
         </div>
-        <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 tracking-wide">
+        <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
           {profile.fullname}
         </div>
 
         {/* Stats Grid */}
-        <div className="flex items-center justify-center sm:justify-start gap-3 text-xs font-mono font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-          <div className="flex items-center gap-1.5">
-            <Users size={12} className="text-gray-400" />
-            <span>{formatFollowers(profile.followers)}</span>
+        <div className="flex items-center justify-center sm:justify-start gap-4 text-xs font-semibold text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-1">
+            <Users size={14} className="text-gray-400" />
+            <span>{formatFollowers(profile.followers)} followers</span>
           </div>
-          <span className="text-gray-300 dark:text-gray-700">|</span>
           {profile.engagement_rate !== undefined && (
-            <div className="flex items-center gap-1.5">
-              <BarChart3 size={12} className="text-gray-400" />
+            <div className="flex items-center gap-1">
+              <BarChart3 size={14} className="text-gray-400" />
               <span>{formatEngagementRate(profile.engagement_rate)} ER</span>
             </div>
           )}
